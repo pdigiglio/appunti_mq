@@ -1,0 +1,15 @@
+# ignore output files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.synctex.gz
+*.lo?
+*.out
+*.ilg
+*.ind
+*-blx.bib
+*.pdf
+*.run.xml
+*.toc
+*.idx
