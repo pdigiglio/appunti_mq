@@ -1,0 +1,129 @@
+\chapter{Princìpi della Meccanica Quantistica}
+\label{chap:principi}
+
+\Princ{Per ogni istante di tempo $t_0\in\R$ un sistema fisico è descritto da un vettore di stato $\ket{\psi(t_0)}$ in uno spazio di Hilbert \Hil{} (generalmente di dimensione non finita).}
+
+\Princ{Ad ogni grandezza fisica $\mathcal{A}$ è associato un operatore autoaggiunto $\op{A}\colon\Hil\to\Hil\mid\op{A}=\adj{A}$.}
+
+\noindent
+Gli operatori \op{A} e \op{B} sono uguali quando hanno lo stesso dominio e $\op{A}\ket{\psi}=\op{B}\ket{\psi}$ per ogni $\ket{\psi}\in\mathscr{D}(\op{A})\seq\Hil$, dove $\mathscr{D}(\op{A})$ è l'insieme di definizione di \op{A}.
+
+\Princ{I possibili risultati di una misura della grandezza $\mathcal{A}$ sul sistema coincidono con lo spettro dell'operatore \op{A}.}
+
+\Princ{\label{princ:4}Sia $a_n$ l'autovalore (assunto non degenere) di \op{A} associato all'autofunzione $\ket{\varphi_n}$ di modo che $\op{A}\ket{\varphi_n}=a_n\ket{\varphi_n}$.
+La probabilità che una misura di $\mathcal{A}$ su un sistema descritto dalla funzione d'onda $\ket{\psi(t)}$ restituisca $a_n$ è
+\begin{equation}\label{princ:eq.1}
+\p{\mathcal{A}=a_n;t}=\abs{\braket{\varphi_n|\psi(t)}}^2.
+\end{equation}
+}
+
+\noindent
+Nel caso in cui $a_n$ sia un autovalore $g_n$ volte degenere con autofunzioni associate $\ket{\varphi_n^i}$ la~\eqref{princ:eq.1} si può generalizzare come segue:
+\begin{equation}
+\p{\mathcal{A}=a_n;t}=\sum_{i=1}^{g_n}\abs{\braket{\varphi_n^i|\psi(t)}}^2.
+\end{equation}
+
+
+Nel caso di autovalori continui non si può parlare propriamente di probabilità di ottenere certo autovalore $\alpha$ ma è più corretto riferirsi alla probabilità che la misurazione restituisca un valore compreso tra $\alpha$ e $\alpha+\ud\alpha$.
+È chiaro che $\p{\alpha;t}$ non è più una vera probabilità ma una densità di probabilità o \emph{\ac{pdf}}\index{\acl{pdf}}, di modo che
+\begin{equation}
+\p{\alpha<\mathcal{A}<\alpha+\ud\alpha;t}=\ud\p{\alpha;t}\coloneqq \abs{\braket{\alpha|\psi(t)}}^2\!\ud\alpha.
+\end{equation}
+
+
+\Princ{\label{princ:5}Se una misura della grandezza $\mathcal{A}$ su un sistema descritto da $\ket{\psi(t)}$ ha dato $a_n$, ogni misura immediatamente successiva della stessa grandezza restituirà il medesimo risultato.}
+
+\noindent
+Per ""immediatamente successivo'' s'intende che la nuova misura dev'essere effettuata prima che il sistema abbia avuto il tempo di evolvere.
+
+
+Ora, il principio~\ref{princ:5} implica che dopo una misurazione il vettore di stato ha subìto un mutamento.
+Sia, ad esempio, $\uD t>0$ un piccolo intervallo di tempo e $\ket{\psi_1}\coloneqq\ket{\psi(t_0-\uD t)}$ il vettore d'onda precedente alla misura --- effettuata al tempo $t_0$.
+Se all'autovalore $a_n$ è associato il sottospazio $\Hil_n\coloneqq \Span\Set{ \Ket{\varphi_n^i} }$ con $i\in\Set{1,\dots,g_n}$, essendo $g_n$ il grado di degenerazione di $a_n$, avremo
+\begin{equation}
+\ket{\psi(t_0+\uD t)}=
+\frac{\displaystyle \sum_{i=1}^{g_n}\ket{\varphi_n^i}\!\braket{\varphi_n^i|\psi_1}}%(t_0-\uD t)}}%
+{\sqrt{\displaystyle \sum_{j=1}^{g_n}\abs{\braket{\varphi_n^j|\psi_1}}^2}}.%(t_0-\uD t)}}^2}}.
+\end{equation}
+La misurazione di una grandezza ha dunque introdotto un mutamento discontinuo nell'evoluzione temporale della funzione d'onda che \emph{precipita} nell'autostato (o in una combinazione di autostati nel caso degenere) associato ad $a_n$.
+
+\Princ{\label{princ:6}L'evoluzione temporale del vettore di stato $\ket{\psi(t)}\in\Hil$ è retta dall'equazione di Schr\"odinger
+\begin{equation}\label{princ:eq.2}
+\iu\hbar\,\deriv{}{t}\ket{\psi(t)}=\H(t)\ket{\psi(t)},\tag{SE}
+\end{equation}
+dove $\H(t)$ è l'\emph{hamiltoniana}\index{operatore!hamiltoniano} del sistema.}
+
+\noindent
+L'operatore $\H(t)$ si ottiene dall'hamiltoniana classica $H(x_i,p_i,t)$ rimpiazzando le variabili coniugate $\vec{x}$ e \vec{p} con le loro controparti quantistiche.
+In generale bisognerà garantire l'hermitianicità di \H{} dal momento che, pur essendo \op{x_i} e \op{p_i} autoaggiunti, non è detto che $f(\op{x_i},\op{p_i})$ lo sia a sua volta.
+
+
+Basti considerare la semplice combinazione $f(\op{x_i},\op{p_i})\coloneqq\vec{\op{x}}\cdot\vec{\op{p}}=\op{x_i}\,\op{p_i}$ (gli indici ripetuti s'intendono sommati) per la quale
+\begin{equation}
+\Adj{f}=\Adj{(\op{x_i}\,\op{p_i})}=\adj{p_i}\adj{x_i}=\op{p_i}\,\op{x_i}\neq\op{x_i}\,\op{p_i}=f.
+\end{equation}
+È chiaro, tuttavia, che l'operatore $\tilde{f}(\op{x_i},\op{p_i})\coloneqq(\op{x_i}\,\op{p_i}+\op{p_i}\,\op{x_i})/2$ è autoaggiunto.
+In generale sarà possibile rendere hermitiane le nostre funzioni $f$ ricorrendo a qualche accorgimento.
+
+
+\section{Flusso di probabilità}
+
+Consideriamo l'equazione di Schr\"odinger~\eqref{princ:eq.2} sviluppata sul \ac{sonc} formato dalle autofunzioni (generalizzate) dell'operatore \op{x}
+\begin{equation}
+\iu\hbar\,\pderiv{}{t}\psi(\vec{x},t)=-\frac{\hbar^2}{2m}\lap\psi(\vec{x},t)+V(\vec{x},t)\,\psi(\vec{x},t)
+\end{equation}
+e la sua complessa coniugata
+\begin{equation}
+-\iu\hbar\,\pderiv{}{t}\cc\psi(\vec{x},t)=-\frac{\hbar^2}{2m}\lap\cc\psi(\vec{x},t)+V(\vec{x},t)\,\cc\psi(\vec{x},t).
+\end{equation}
+Sia ora $\rho(\vec{x},t)\coloneqq \abs{\psi(\vec{x},t)}^2$ la densità volumetrica di probabilità.
+\begin{align*}
+\pderiv{\rho}{t}&=\cc\psi\,\pderiv{\psi}{t}+\psi\,\pderiv{\cc\psi}{t}=-\hbar\,\frac{\cc\psi\lap\psi-\psi\lap\cc\psi}{2\iu m}\\
+&=-\di\tp*{\hbar\,\frac{\cc\psi\grad\psi-\psi\grad\cc\psi}{2\iu m}}\eqqcolon-\di\vec{J}.
+\end{align*}
+Se definisco il \emph{flusso} o \emph{corrente di probabilità}
+\begin{equation}
+\vec{J}(\vec{x},t) \coloneqq \hbar\,\frac{\cc\psi\grad\psi-\psi\grad\cc\psi}{2\iu m},
+\end{equation}
+ottengo l'equazione di continuità
+\begin{empheq}{equation}
+\pderiv{\rho}{t}+\di\vec{J}=0.
+\end{empheq}
+
+
+Sia dato un volume $\Omega\seq\R^3$ di cui indicheremo il bordo con $\de\Omega$.
+\begin{equation}
+\deriv{}{t}\int_\Omega\rho\ud^3x=
+\int_\Omega\pderiv{\rho}{t}\ud^3x
+=-\int_\Omega\di\vec{J}\ud^3x=
+-\int_{\de\Omega}\vec{J}\cdot\ver{n}\ud^2x.
+\end{equation}
+Se $\Omega\to\R^3$ la probabilità nello spazio si conserva.
+Ma il vettore inizialmente assunto normalizzato dunque dev'essere
+\begin{equation}
+\int_{\R^3}\abs{\psi(\vec{x},t)}\ud^3x\equiv 1.
+\end{equation}
+
+
+	\subsection{Teorema di Ehrenfest}
+
+Sia dato un operatore $\op{A}(t)$ in generale dipendente (esplicitamente) dal tempo.
+Si definisce 	\emph{valor medio}\index{valor medio} di $\op{A}(t)$ la quantità
+\begin{equation}\label{princ:eq.3}
+\braket{\op{A}(t)}\coloneqq\bra{\psi(t)}\op{A}(t)\ket{\psi(t)}\!.
+\end{equation}
+La definizione~\eqref{princ:eq.3} coincide con il tradizionale valore di aspettazione
+\begin{equation}
+\braket{\op{A}(t)}=\sum_k a_k\,\p{\mathcal{A}=a_k}+
+\int\alpha\,\p{\mathcal{A}=\alpha}\ud\alpha.
+\end{equation}
+Per convincersene, si consideri un \ac{sonc} $\Set{\Ket{\varphi_k},\Ket{\kappa}}$ formato da autofunzioni {\color{red}discrete e continue} dell'operatore hamiltoniano.
+Ogni funzione è sviluppabile come
+\begin{equation}
+\begin{aligned}
+\ket{\psi(t)}&=\sum_k\ket{\varphi_k}\!\braket{\varphi_k|\psi(t)}+
+\int \ket{\kappa}\!\braket{\kappa|\psi(t)}\ud \kappa\\
+&=\sum_k\eu^{-\iu E_kt/\hbar}\ket{\varphi_k}\!\braket{\varphi_k|\psi(0)}+
+\int \eu^{-\iu E_\kappa t/\hbar}\ket{\kappa}\!\braket{\kappa|\psi(0)}\ud \kappa
+\end{aligned}
+\end{equation}

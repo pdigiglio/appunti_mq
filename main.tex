@@ -1,0 +1,261 @@
+\documentclass[
+	a4paper,
+	10pt,
+%	titlepage,
+	headinclude=off,
+	footinclude=off,
+	version = first,
+	oneside, openany,
+%	twoside, openright,
+%	manychapters,
+	draft,
+]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, italian]{babel}
+
+% imposto iwona come font senza grazie
+\renewcommand{\sfdefault}{iwona}
+
+\usepackage[]{xcolor}
+\usepackage{MyMathDef}
+
+%stile pagina
+\usepackage{
+	emptypage,
+	indentfirst,
+	microtype,%migliore spaziatura delle parole
+	mparhack%per le note a margine
+}
+
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+
+% miniindici
+\usepackage[tight,italian]{minitoc}
+
+% tabelle e figure
+\usepackage{
+	rotating,
+	booktabs,
+	multirow,
+	wrapfig,
+	subfig
+}
+
+% mostra i label degli oggetti.
+% Meglio commentare quando si compila con "final"
+\usepackage{showkeys}%, showidx}
+
+% per le unità di misura
+\usepackage{siunitx}
+\DeclareSIUnit{\atmosphere}{atm}
+\sisetup{
+%	list-final-separator = { \translate{and} },
+%	list-pair-separator = { \translate{and} },
+	range-phrase = { e },
+	output-product = \cdot,
+	bracket-unit-denominator = true,
+	detect-all,
+	detect-mode = false,
+	exponent-product = \cdot,
+	separate-uncertainty,
+	sticky-per = true,
+%	per-mode=symbol,
+%	input-protect-tokens=\dots,
+%	input-symbols=\dots
+}
+
+% per i grafici
+\usepackage{
+	tikz,
+	pgfplots,
+	tikz-3dplot,
+	ifthen
+}
+\usetikzlibrary{
+	patterns,
+	3d,
+	fadings,
+	arrows
+}
+\usepgfplotslibrary{units}
+\tikzset{
+	dot/.style={
+		fill=black,
+		circle,
+		maximum size=1pt
+	},
+	>=stealth
+}
+\pgfplotsset{
+	compat=1.6,
+	every axis/.append style={
+		disabledatascaling,
+		samples =100,
+		enlargelimits = 0.05,
+		axis x line = middle,
+		axis y line = middle,
+		legend style = {
+			shade,
+			bottom color = gray!20,
+			top color = white,
+			anchor =north % west
+		},
+	},
+	% queste vengono attivate dopo che il grafico è stato reato,
+	% quindi sovrascrivono le opzioni che sono state già date 
+%	every axis plot post/.append style={
+%		mark=none,
+%		color=black,
+%		solid
+%	},
+	% imposto delle opzioni per i grafici
+	cycle list={
+		black,
+		mark=none,
+	},
+	every pin/.append style={
+		font=\footnotesize
+	},
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Indice Analitico
+%==========
+%
+\usepackage{makeidx, multicol}
+\makeindex
+%%
+\let\orgtheindex\theindex
+\let\orgendtheindex\endtheindex
+\def\theindex{%
+	\def\twocolumn{\begin{multicols}{2}}%
+	\def\onecolumn{}%
+	\clearpage
+	\orgtheindex
+}
+\def\endtheindex{%
+	\end{multicols}%
+	\orgendtheindex
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage[%
+	printonlyused,%
+	smaller%
+]{acronym}
+
+\definecolor{halfgray}{gray}{0.55} % chapter numbers will be semi transparent .5 .55 .6 .0
+\definecolor{webgreen}{rgb}{0,.5,0}
+\definecolor{webbrown}{rgb}{.6,0,0}
+\definecolor{Maroon}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{RoyalBlue}{cmyk}{1, 0.50, 0, 0}
+%\definecolor{Black}{cmyk}{0, 0, 0, 0}
+
+\usepackage{hyperref}
+\hypersetup{%
+	final,
+    %draft,	% = no hyperlinking at all (useful in b/w printouts)
+    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    % uncomment the following line if you want to have black links (e.g., for printing)
+    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
+    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
+    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
+    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
+    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, pagecolor=RoyalBlue,%
+    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+}  
+
+% abilita la ricerca di ° a documento finito
+\usepackage{textcomp}
+% per le frazioni in linea
+\usepackage{xfrac}
+
+\newcommand{\eu}{\ensuremath{\mathrm{e}}}% costante eulero
+\newcommand{\iu}{\ensuremath{\mathrm{i}}}%unità immaginaria
+\newcommand{\deriv}[3][]{\dfrac{\ud^{#1}#2}{\ud #3^{#1}}}% derivata totale - notazione leibniz
+\newcommand{\pderiv}[3][]{\dfrac{\de^{#1}#2}{\de #3^{#1}}}% derivata parziale - notazione leibniz
+
+% testo fittizio
+\usepackage{lipsum}
+
+% spaziatura normale dopo il punto
+\frenchspacing
+% frequenza di divisione in sillabe (default=100)
+% numero più piccolo -> sillabazione più frequente
+\pretolerance=5
+
+\areaset[current]{\textwidth}{701pt}
+
+% titolo
+\title{
+	\color{darkgray}{
+		Appunti di\\
+	}
+	\scshape\color{Maroon}{
+		meccanica quantistica
+	}
+}
+\subtitle{
+	\color{gray}{
+		prof.~Alberto Zaffaroni
+	}
+}
+\author{
+%	\scshape{%
+		Di Giglio, Paolo%
+%			\and%
+%		Legramandi, Andrea%
+%	}%
+}
+\date{
+	\small\sf\color{gray}{
+		Ultimo aggiornamento:\\
+		\today
+	}
+}
+\usepackage{bm}
+\usepackage{amsmath,amsthm}
+\usepackage{mathtools}
+
+% operatori
+\newcommand{\op}[1]{\ensuremath{\widehat{#1}}}
+\newcommand{\Adj}[1]{\ensuremath{{#1}^\dag}}
+\newcommand{\adj}[1]{\Adj{\op{#1}}}
+%complesso coniugato
+\newcommand{\cc}[1]{\ensuremath{\overline{#1}}}
+
+%miscellanea
+\newcommand{\Hil}{\ensuremath{\mathscr{H}}}
+\renewcommand{\H}{\op{H}}
+
+\usepackage{natbib}
+
+
+\frenchspacing
+\pretolerance=5
+\begin{document}
+
+%\maketitle
+
+	\input{./front_back/acronimi}
+%\frontmatter % titolo, indice, introduzione, etc...
+
+%	\tableofcontents
+
+\mainmatter % capitoli
+%	\thispagestyle{empty}
+%	\part{\scshape\color{Maroon}{modulo i}}
+%	\thispagestyle{empty}
+		\input{./mainmatter/chap1}
+
+%\backmatter %indice analitico, bibliografia...
+	\printindex
+
+%	\nocite{*}
+%	\bibliographystyle{plain}
+%	\bibliography{./bibliografia}
+\end{document}
